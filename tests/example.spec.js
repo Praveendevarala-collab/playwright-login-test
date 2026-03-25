@@ -1,19 +1,12 @@
-// @ts-check
 import { test, expect } from '@playwright/test';
 
-test('has title', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
+test('Admin Login Test', async ({ page }) => {
+  await page.goto('https://demohri.sutihr.com');
 
-  // Expect a title "to contain" a substring.
-  await expect(page).toHaveTitle(/Playwright/);
-});
+  await page.fill('#username', 'qatest');
+  await page.fill('#password', 'test2020');
 
-test('get started link', async ({ page }) => {
-  await page.goto('https://playwright.dev/');
+  await page.click('button[type="submit"]');
 
-  // Click the get started link.
-  await page.getByRole('link', { name: 'Get started' }).click();
-
-  // Expects page to have a heading with the name of Installation.
-  await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible();
+  await expect(page).toHaveURL(/dashboard/);
 });
