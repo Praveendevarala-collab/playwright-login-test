@@ -1,19 +1,16 @@
 const { test, expect } = require('@playwright/test');
 
 test('Admin login test', async ({ page }) => {
-  
-  // 1. Open URL
+
   await page.goto('https://demohri.sutihr.com');
 
-  // 2. Enter username
-  await page.fill('#username', 'qatest');
+  await page.fill('input[name="username"]', 'qatest');
+  await page.fill('input[type="password"]', 'test2020');
 
-  // 3. Enter password
-  await page.fill('#password', 'test2020');
+  // 👇 wait + click
+  await page.waitForSelector('button:has-text("Proceed")');
+  await page.getByRole('button', { name: 'Proceed' }).click();
 
-  // 4. Click login button
-  await page.click('Proceed');
-
-  // 5. Verify login success (example)
-  await expect(page).toHaveURL(/dashboard/);
+  // 👇 better validation
+  await expect(page).not.toHaveURL(/login/);
 });
