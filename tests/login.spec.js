@@ -12,7 +12,7 @@ test('Admin login test', async ({ page }) => {
   await page.fill('#password', 'test2020');
 
   // 4. Click login button
-  await page.click('#loginButton');
+  await page.click('Proceed');
 
   // 5. Verify login success (example)
   await expect(page).toHaveURL(/dashboard/);
