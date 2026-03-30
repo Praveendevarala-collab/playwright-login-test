@@ -10,3 +10,11 @@ module.exports = {
   storageState: process.env.CI ? undefined : 'playwright/.auth/user.json',
 },
 };
+const { defineConfig } = require('@playwright/test');
+
+module.exports = defineConfig({
+  use: {
+    storageState: 'playwright/.auth/user.json',
+    baseURL: 'https://demohri.sutihr.com/'
+  }
+});

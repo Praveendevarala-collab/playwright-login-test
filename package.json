@@ -9,6 +9,7 @@
     "test": "npx playwright test"
   },
   "dependencies": {
+    "dotenv": "^17.3.1",
     "playwright": "^1.58.2"
   }
 }
