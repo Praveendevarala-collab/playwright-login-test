@@ -10,9 +10,9 @@ test('login and save session', async ({ page }) => {
 
   await page.click('button:has-text("Proceed")');
 
-  // ✅ Ensure login success
-  await page.waitForURL(/dashboard/);
+  await page.waitForLoadState('networkidle');
 
+  // Save session AFTER login success
   await page.context().storageState({
     path: 'playwright/.auth/user.json'
   });

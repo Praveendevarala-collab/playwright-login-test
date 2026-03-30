@@ -1,40 +1,14 @@
-name: Playwright Tests
+- name: Install Playwright browsers
+  run: npx playwright install --with-deps
 
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+- name: Create auth folder
+  run: mkdir -p playwright/.auth
 
-jobs:
-  test:
-    runs-on: ubuntu-latest
+- name: Run auth setup
+  run: npx playwright test tests/auth.setup.spec.js
+  env:
+    USERNAME: ${{ secrets.USERNAME }}
+    PASSWORD: ${{ secrets.PASSWORD }}
 
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v4
-
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: 18
-
-    - name: Install dependencies
-      run: npm ci
-
-    - name: Install Playwright browsers
-      run: npx playwright install --with-deps
-
-    - name: Create auth directory
-      run: mkdir -p playwright/.auth
-
-    # 👇 STEP 1: Run login and save session
-    - name: Run auth setup
-      run: npx playwright test tests/auth.setup.spec.js
-      env:
-        USERNAME: ${{ secrets.USERNAME }}
-        PASSWORD: ${{ secrets.PASSWORD }}
-
-    # 👇 STEP 2: Run actual tests
-    - name: Run Playwright tests
-      run: npx playwright test
+- name: Run Playwright tests
+  run: npx playwright test

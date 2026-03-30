@@ -7,6 +7,6 @@ module.exports = {
    // { name: 'webkit', use: { ...devices['Desktop Safari'] } },
   ],
   use: {
-    storageState: 'playwright/.auth/user.json',
-  }
+  storageState: process.env.CI ? undefined : 'playwright/.auth/user.json',
+},
 };
