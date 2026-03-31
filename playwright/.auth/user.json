@@ -1,0 +1,53 @@
+{
+  "cookies": [
+    {
+      "name": "globalMinizeDivEmpIdStr",
+      "value": "",
+      "domain": "demohri.sutihr.com",
+      "path": "/",
+      "expires": 1776619684,
+      "httpOnly": false,
+      "secure": false,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "JSESSIONID",
+      "value": "5B407E5A25C223A0C9CC713AED60C2F6",
+      "domain": "demohri.sutihr.com",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Lax"
+    },
+    {
+      "name": "JSESSIONID",
+      "value": "374A77FDEFE9F66D12F68FE7FC01A0AE",
+      "domain": "apps3.sutihr.com",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": true,
+      "secure": true,
+      "sameSite": "Lax"
+    }
+  ],
+  "origins": [
+    {
+      "origin": "https://demohri.sutihr.com",
+      "localStorage": [
+        {
+          "name": "serverURL",
+          "value": "https://demohri.sutihr.com/"
+        },
+        {
+          "name": "localSesId",
+          "value": "5B407E5A25C223A0C9CC713AED60C2F6"
+        },
+        {
+          "name": "moduleName",
+          "value": "Self Service Workspace"
+        }
+      ]
+    }
+  ]
+}
