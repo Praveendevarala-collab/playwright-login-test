@@ -1,18 +1,22 @@
+require('dotenv').config();
+
 const { test, expect } = require('@playwright/test');
+const LoginPage = require('../pages/loginPage');
 
 test('Dashboard access test', async ({ page }) => {
 
-  await page.goto('https://demohri.sutihr.com');
+  console.log('SUTI_USERNAME:', process.env.SUTI_USERNAME);
+  console.log('SUTI_PASSWORD:', process.env.SUTI_PASSWORD);
 
-  await page.fill('input[name="username"]', 'qatest');
-  await page.fill('input[name="password"]', 'test2020');
+  const loginPage = new LoginPage(page);
 
-  await page.getByRole('button', { name: 'Proceed' }).click();
+  await loginPage.goto();
 
-// Wait for URL to contain myhrdashboard (SPA-safe)
-await expect(page).toHaveURL(/myhrdashboard/);
+  await loginPage.login(
+    process.env.SUTI_USERNAME,
+    process.env.SUTI_PASSWORD
+  );
 
-  // Validate successful login
   await expect(page).toHaveURL(/myhrdashboard/);
-
+  //await expect(page.locator('text=Home')).toBeVisible({timeout: 10000});
 });

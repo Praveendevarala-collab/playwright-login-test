@@ -1,20 +1,43 @@
-const { devices } = require('@playwright/test');
+require('dotenv').config();
 
-module.exports = {
-  projects: [
-    { name: 'chromium', use: { ...devices['Desktop Chrome'] } },
-   // { name: 'firefox', use: { ...devices['Desktop Firefox'] } },
-   // { name: 'webkit', use: { ...devices['Desktop Safari'] } },
-  ],
-  use: {
-  storageState: process.env.CI ? undefined : 'playwright/.auth/user.json',
-},
-};
 const { defineConfig } = require('@playwright/test');
 
 module.exports = defineConfig({
+  testDir: './tests',
+
+  timeout: 30000,
+
+  expect: {
+    timeout: 10000
+  },
+
+  fullyParallel: true,
+
+  reporter: [
+    ['html', { open: 'never' }]
+  ],
+
   use: {
-    storageState: 'playwright/.auth/user.json',
-    baseURL: 'https://demohri.sutihr.com/'
-  }
+    headless: false, // set true in CI
+
+    viewport: { width: 1280, height: 720 },
+
+    ignoreHTTPSErrors: true,
+
+    screenshot: 'only-on-failure',
+
+    video: 'retain-on-failure',
+
+    trace: 'on-first-retry',
+
+    baseURL: 'https://demohri.sutihr.com'
+  },
+
+  projects: [
+    {
+      name: 'chromium',
+      use: { browserName: 'chromium' },
+    }
+  ]
+
 });

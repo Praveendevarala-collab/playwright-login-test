@@ -12,10 +12,18 @@ class LoginPage {
   }
 
   async login(user, pass) {
-    await this.page.fill(this.username, 'qatest');
-    await this.page.fill(this.password, 'test2020');
-    await this.page.click(this.proceedBtn);
-  }
-}
+  // Clear username field properly
+  await this.page.locator(this.username).click({ clickCount: 3 });
+  await this.page.keyboard.press('Backspace');
+  await this.page.fill(this.username, user);
 
-module.exports = { LoginPage };
+  // Clear password field properly
+  await this.page.locator(this.password).click({ clickCount: 3 });
+  await this.page.keyboard.press('Backspace');
+  await this.page.fill(this.password, pass);
+
+  // Click proceed
+  await this.page.click(this.proceedBtn);
+}
+  }
+module.exports = LoginPage;
