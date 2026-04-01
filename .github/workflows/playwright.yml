@@ -25,13 +25,13 @@ jobs:
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
 
-      - - name: Run Playwright tests
-  run: npx playwright test
-  env:
-    SUTI_USERNAME: ${{ secrets.SUTI_USERNAME }}
-    SUTI_PASSWORD: ${{ secrets.SUTI_PASSWORD }}
+      - name: Run Playwright tests
+        run: npx playwright test
+        env:
+          SUTI_USERNAME: ${{ secrets.SUTI_USERNAME }}
+          SUTI_PASSWORD: ${{ secrets.SUTI_PASSWORD }}
 
-      - name: Upload HTML report
+      - name: Upload Playwright Report
         if: always()
         uses: actions/upload-artifact@v4
         with:
