@@ -18,7 +18,7 @@ module.exports = defineConfig({
   ],
 
   use: {
-    headless: false, // set true in CI
+    headless: true, // set true in CI
 
     viewport: { width: 1280, height: 720 },
 
