@@ -5,6 +5,9 @@ class LoginPage {
     this.username = 'input[name="username"]';
     this.password = 'input[type="password"]';
     this.proceedBtn = 'button:has-text("Proceed")';
+
+    // ✅ Target ONLY Quick Link Personnel (inside widget section)
+    this.personnelLink = 'div.circle-label2:has-text("Personnel")';
   }
 
   async goto() {
@@ -12,18 +15,23 @@ class LoginPage {
   }
 
   async login(user, pass) {
-  // Clear username field properly
-  await this.page.locator(this.username).click({ clickCount: 3 });
-  await this.page.keyboard.press('Backspace');
-  await this.page.fill(this.username, user);
+    await this.page.locator(this.username).click({ clickCount: 3 });
+    await this.page.keyboard.press('Backspace');
+    await this.page.fill(this.username, user);
 
-  // Clear password field properly
-  await this.page.locator(this.password).click({ clickCount: 3 });
-  await this.page.keyboard.press('Backspace');
-  await this.page.fill(this.password, pass);
+    await this.page.locator(this.password).click({ clickCount: 3 });
+    await this.page.keyboard.press('Backspace');
+    await this.page.fill(this.password, pass);
 
-  // Click proceed
-  await this.page.click(this.proceedBtn);
-}
+    await this.page.click(this.proceedBtn);
   }
+
+  async clickPersonnel() {
+    // Wait for dashboard to stabilize
+    await this.page.waitForSelector(this.personnelLink);
+
+    await this.page.locator(this.personnelLink).click();
+  }
+}
+
 module.exports = LoginPage;
